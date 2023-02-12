@@ -54,9 +54,7 @@
         ***********************************-->
         <div class="nav-header">
             <div class="brand-logo">
-                <a href="#">
-                    <h2>BLOG</h2>
-                </a>
+                <h1 class="p-4 text-center">Multi-Vendor</h1>
             </div>
         </div>
         <!--**********************************

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="h-100" lang="en">
 
@@ -40,24 +42,31 @@
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
-                                <h4 class="text-center">Forget Password</h4>
+                                <h4 class="text-center">New password update</h4>
 
-                                <form class="mt-5 mb-5 login-input" action="{{route('adminPassword.forgetLink')}}" method="post">
+                                <form class="mt-5 mb-5 login-input" action="" method="" enctype="multipart/form-data">
                                     @csrf
-
-                                    @if (session()->has('success'))
-                                        <p class="alert alert-success">{{session()->get('success')}}</p>
+    
+                                    @if ($errors->any())
+                                        @foreach ($errors->all() as $error)
+                                            <p class="alert alert-danger">{{$error}}</p>
+                                        @endforeach
                                     @endif
-
+    
+                                    @if (session()->has('message'))
+                                        <p class="alert alert-success">{{session()->get('message')}}</p>
+                                    @endif
+    
                                     <div class="form-group">
-                                        <p><span>Forget Password?</span> Enter your email and we'll send you the link on your given mail. Check and reset the new password</p>
-                                        <input name="email" type="email" class="form-control" placeholder="Enter Email" required>
-
-                                        @if($errors->has('email'))
-                                            <span class="text-danger">{{ $errors->first('email') }}</span>
-                                        @endif
+                                        <input name="email" type="email" class="form-control"  placeholder="Enter E-Mail Address" required>
                                     </div>
-                                    <button type="submit" class="btn login-form__btn submit w-100">Send Password Reset Link</button>
+                                    <div class="form-group">
+                                        <input name="password" type="password" class="form-control"  placeholder="New Password" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="confirm_password" type="password" class="form-control" placeholder="Confirm Password" required>
+                                    </div>
+                                    <button type="submit" class="btn login-form__btn submit w-100">Reset Password</button>
                                 </form>
                             </div>
                         </div>
@@ -80,8 +89,3 @@
     <script src="{{url('/Backend/js/styleSwitcher.js')}}"></script>
 </body>
 </html>
-
-
-
-
-

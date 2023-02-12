@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
@@ -15,7 +15,7 @@ class ProfileController extends Controller
 
     }
 
-    public function resetPassword(){
+    public function resetPasswordForm(){
 
         return view('Backend.Pages.resetPassword');
 

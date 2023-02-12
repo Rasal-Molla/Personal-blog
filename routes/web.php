@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\ProfileController;
-use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,13 +25,15 @@ Route::get('/admin-registration-form', [AuthController::class, 'registrationForm
 Route::post('/admin-registration-store', [AuthController::class, 'store'])->name('admin.info');
 Route::post('/admin-login-process', [AuthController::class, 'loginProcess'])->name('adminLogin.process');
 Route::get('/admin-forget-password-form', [AuthController::class, 'forgetPassword'])->name('adminPassword.forget');
-Route::post('/admin-forget-password/reset-link', [AuthController::class, 'resetPassword'])->name('adminPassword.forget');
+Route::post('/admin-forget-password/reset-link', [AuthController::class, 'resetPasswordLink'])->name('adminPassword.forgetLink');
+Route::get('/admin-forget-password-update', [AuthController::class, 'forgetPasswordUpdate'])->name('adminforget.passwordUpdate');
 
 Route::group(['middleware'=>'auth', 'prefix'=>'admin'], function(){
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
+
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'viewProfile'])->name('admin.profile');
-    Route::get('/reset-password', [ProfileController::class, 'resetPassword'])->name('admin.resetPassword');
+    Route::get('/reset-password', [ProfileController::class, 'resetPasswordForm'])->name('admin.resetPassword');
 
 });

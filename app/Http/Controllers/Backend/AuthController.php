@@ -73,7 +73,7 @@ class AuthController extends Controller
         return view('Backend.Pages.forgetPassword');
     }
 
-    public function resetPassword(Request $request){
+    public function resetPasswordLink(Request $request){
 
         $request->validate([
             'email'=>'required|email|exists:users'
@@ -87,11 +87,20 @@ class AuthController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        Mail::send('Backend/Pages/forgetPassword', ['token' => $token], function($message) use($request){
+        Mail::send('Backend/Pages/forgetPasswordUpdate', ['token' => $token], function($message) use($request){
             $message->to($request->email);
             $message->subject('Reset Password');
         });
 
         return redirect()->back()->with('success', 'We have e-mailed your password reset link!');
     }
+
+
+    public function forgetPasswordUpdate(){
+
+        return view('Backend.Pages.forgetPasswordUpdate');
+
+    }
+
+
 }
